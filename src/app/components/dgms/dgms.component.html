@@ -1,0 +1,42 @@
+<div class="container">
+  <h1 class="mt-5 text-center">Fetch Data from Laravel API REST</h1>
+  <!-- Optional: Place to the bottom of scripts -->
+ <form [formGroup]="addForm" (ngSubmit)="ajoutData()">
+
+    <input type="text" class="form-control mb-2" formControlName="titre" name="titre" id="titre"> 
+    <input type="text" class="form-control" formControlName="contenu"  name="contenu"  id="contenu"> 
+    <button class="btn btn-outline-primary mt-1">Button</button>
+    
+ </form>
+  <hr>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th [style.display]="'none'">Id</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Date de creation</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dgms; let i=index">
+
+        <td>{{ i+1 }}</td>
+        <td [style.display]="'none'">{{ item.id }}</td>
+        <td>{{ item.titre }}</td>
+        <td>{{ item.contenu }}</td>
+        <td>{{ item.created_at | date:'dd/MM/yyyy'}}</td>
+        <td>
+          <!-- <a class="btn btn-success"  (click) ="selectionnerLigne(item.id)">
+                    d
+                </a>&nbsp; <a [class]="'btn btn-danger'">d</a> -->
+          <a [class]="'btn btn-success'" (click)="selectionnerLigne(item.id)" href="">edit</a> <a
+            [class]="'btn btn-danger'" (click)="supprimer(item.id)" href="">delete</a>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
